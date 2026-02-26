@@ -1,0 +1,7 @@
+
+{ "comments":["isme comment ham aise islie likh rahe hai because hm json file me comment nahi likh skte hai aur yaha pr ham ye decide krte hai ki nodemon kis file ko watch karega aur kis file ko ignore karega aur jab bhi koi change hoga to nodemon kya command execute karega"],
+  "watch":["."],
+  "ext":"js ejs json",
+  "ignore":["node_modules","data"],
+  "exec":"node app.js"
+}

@@ -1,7 +1,7 @@
 const express = require('express');
 homerouter = express.Router();
-const path = require('path');
-homerouter.get("/",(req,res,next)=>{
-    res.sendFile(path.join(__dirname,"../views/respons.html"));
+homerouter.get("/",(req,res,next)=>
+{
+    res.render("respons");
 });
 module.exports = homerouter;

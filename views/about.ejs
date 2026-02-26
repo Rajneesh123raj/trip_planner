@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - AI Trip Planner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            min-height: 100vh;
+            animation: gradientShift 15s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navbar */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        header h1 {
+            color: #2d3748;
+            font-size: 1.8em;
+            background: linear-gradient(135deg, #38b2ac 0%, #2c7a7b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #2d3748;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1em;
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #38b2ac;
+            transform: translateY(-2px);
+        }
+
+        nav a.active {
+            color: #38b2ac;
+            background: #e6fffa;
+        }
+
+        .login-btn {
+            padding: 10px 25px !important;
+            background: linear-gradient(135deg, #38b2ac 0%, #2c7a7b 100%);
+            color: white !important;
+            border-radius: 25px;
+            box-shadow: 0 5px 15px rgba(56, 178, 172, 0.3);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 8px 20px rgba(56, 178, 172, 0.5);
+        }
+
+        /* Hero Section */
+        .about-hero {
+            text-align: center;
+            padding: 80px 20px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .about-hero h2 {
+            font-size: 3.5em;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .about-hero p {
+            font-size: 1.3em;
+            color: #4a5568;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 20px;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .mission-card {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #38b2ac;
+        }
+
+        .mission-card h3 {
+            font-size: 2em;
+            color: #2d3748;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .mission-card p {
+            font-size: 1.1em;
+            color: #4a5568;
+            line-height: 1.9;
+            text-align: center;
+        }
+
+        /* Features Section */
+        .features-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 20px;
+        }
+
+        .features-section h3 {
+            font-size: 2.5em;
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(56, 178, 172, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h4 {
+            font-size: 1.4em;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #718096;
+            line-height: 1.7;
+        }
+
+        /* Team Section */
+        .team-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .team-section h3 {
+            font-size: 2.5em;
+            color: #2d3748;
+            margin-bottom: 50px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(56, 178, 172, 0.2);
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #38b2ac, #2c7a7b);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+        }
+
+        .team-card h4 {
+            font-size: 1.3em;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+
+        .team-card .role {
+            color: #38b2ac;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .team-card p {
+            color: #718096;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: white;
+            padding: 80px 20px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .cta-section h3 {
+            font-size: 2.5em;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            color: #718096;
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #38b2ac 0%, #2c7a7b 100%);
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(56, 178, 172, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(56, 178, 172, 0.5);
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 20px;
+            text-align: center;
+            color: #4a5568;
+        }
+
+        @media (max-width: 768px) {
+            .about-hero h2 { font-size: 2.5em; }
+            .mission-card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <div class="nav-container">
+            <h1>✈️ AI Trip Planner</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/plan">Plan Trip</a>
+                <a href="/about" class="active">About</a>
+                <a href="/user/login" class="login-btn">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="about-hero">
+        <h2>About AI Trip Planner 🌍</h2>
+        <p>We're on a mission to make travel planning effortless and exciting using the power of artificial intelligence.</p>
+    </div>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="mission-card">
+            <h3>🎯 Our Mission</h3>
+            <p>
+                At AI Trip Planner, we believe that everyone deserves unforgettable travel experiences. 
+                Our AI-powered platform takes the stress out of trip planning by creating personalized 
+                itineraries tailored to your preferences, budget, and interests. Whether you're a solo 
+                adventurer, planning a family vacation, or exploring with friends, we've got you covered.
+            </p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <h3>✨ Why Choose Us?</h3>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h4>AI-Powered Planning</h4>
+                <p>Our advanced AI analyzes millions of travel data points to create the perfect itinerary for you in seconds.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h4>Budget-Friendly</h4>
+                <p>Get recommendations that fit your budget perfectly, from luxury getaways to backpacking adventures.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h4>Personalized Experience</h4>
+                <p>Tailored suggestions based on your interests - adventure, culture, food, nature, and more.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h4>Instant Results</h4>
+                <p>No more hours of research. Get a complete travel plan in minutes, not days.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🗺️</div>
+                <h4>Local Insights</h4>
+                <p>Discover hidden gems and authentic experiences that guidebooks often miss.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h4>Easy to Use</h4>
+                <p>Simple, intuitive interface that anyone can use - no tech expertise required.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <h3>👥 Meet Our Team</h3>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar">👨‍💻</div>
+                <h4>Rajneesh Kumar</h4>
+                <p class="role">Founder & Lead Developer</p>
+                <p>Passionate about travel and technology, creating solutions that make life easier.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">🎨</div>
+                <h4>Design Team</h4>
+                <p class="role">UI/UX Experts</p>
+                <p>Crafting beautiful and intuitive experiences for our users.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">🤖</div>
+                <h4>AI Team</h4>
+                <p class="role">Machine Learning Engineers</p>
+                <p>Building intelligent algorithms that understand your travel preferences.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h3>Ready to Plan Your Next Adventure?</h3>
+        <p>Join thousands of travelers who trust AI Trip Planner for their journeys.</p>
+        <a href="/plan" class="cta-btn">Start Planning Now 🚀</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 AI Trip Planner | Built with ❤️ by Rajneesh</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">
+            <a href="/privacy" style="color: #38b2ac; text-decoration: none; margin: 0 10px;">Privacy Policy</a> |
+            <a href="/terms" style="color: #38b2ac; text-decoration: none; margin: 0 10px;">Terms of Service</a> |
+            <a href="/contact" style="color: #38b2ac; text-decoration: none; margin: 0 10px;">Contact Us</a>
+        </p>
+    </footer>
+</body>
+</html>

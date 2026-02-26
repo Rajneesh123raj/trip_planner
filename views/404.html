@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | AI Trip Planner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: gradientShift 15s ease infinite;
+            background-size: 200% 200%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating elements */
+        .float-element {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-50px) rotate(90deg); }
+            50% { transform: translateY(0) rotate(180deg); }
+            75% { transform: translateY(50px) rotate(270deg); }
+        }
+
+        .float-1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .float-2 { top: 20%; right: 15%; animation-delay: 2s; }
+        .float-3 { bottom: 15%; left: 20%; animation-delay: 4s; }
+        .float-4 { bottom: 20%; right: 10%; animation-delay: 6s; }
+
+        .error-container {
+            text-align: center;
+            z-index: 10;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .error-icon {
+            font-size: 8rem;
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #38b2ac 0%, #2c7a7b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 20px;
+            animation: fadeIn 0.8s ease 0.2s backwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #2d3748;
+            margin-bottom: 15px;
+            animation: fadeIn 0.8s ease 0.4s backwards;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #4a5568;
+            margin-bottom: 30px;
+            max-width: 500px;
+            line-height: 1.6;
+            animation: fadeIn 0.8s ease 0.6s backwards;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 0.8s ease 0.8s backwards;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #38b2ac 0%, #2c7a7b 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(56, 178, 172, 0.3);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(56, 178, 172, 0.5);
+        }
+
+        .btn-primary:hover::before {
+            width: 500px;
+            height: 500px;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #38b2ac;
+            border: 2px solid #38b2ac;
+        }
+
+        .btn-secondary:hover {
+            background: #e6fffa;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(56, 178, 172, 0.2);
+        }
+
+        .suggestions {
+            margin-top: 50px;
+            margin-bottom: 60px;
+            animation: fadeIn 0.8s ease 1s backwards;
+        }
+
+        .suggestions h3 {
+            font-size: 1.3em;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .suggestions-list {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .suggestion-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #2d3748;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .suggestion-link:hover {
+            background: white;
+            border-color: #38b2ac;
+            color: #38b2ac;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(56, 178, 172, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 5rem;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+
+            .error-icon {
+                font-size: 5rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Lost plane animation */
+        .plane {
+            position: absolute;
+            font-size: 4rem;
+            animation: fly 15s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes fly {
+            0% {
+                left: -10%;
+                top: 20%;
+                transform: rotate(-45deg);
+            }
+            50% {
+                left: 110%;
+                top: 60%;
+                transform: rotate(-45deg);
+            }
+            51% {
+                left: 110%;
+                top: 80%;
+                transform: rotate(135deg);
+            }
+            100% {
+                left: -10%;
+                top: 40%;
+                transform: rotate(135deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating elements -->
+    <div class="float-element float-1">🗺️</div>
+    <div class="float-element float-2">🧳</div>
+    <div class="float-element float-3">🌍</div>
+    <div class="float-element float-4">🎒</div>
+    
+    <!-- Flying plane -->
+    <div class="plane">✈️</div>
+
+    <!-- Error Content -->
+    <div class="error-container">
+        <div class="error-icon">🧭</div>
+        <div class="error-code">404</div>
+        <h1>Oops! You've Lost Your Way</h1>
+        <p>
+            Looks like this destination doesn't exist on our map! 
+            The page you're looking for might have been moved, deleted, 
+            or never existed in the first place.
+        </p>
+
+        <div class="button-group">
+            <a href="/" class="btn btn-primary">
+                🏠 Back to Home
+            </a>
+            <a href="javascript:history.back()" class="btn btn-secondary">
+                ← Go Back
+            </a>
+        </div>
+
+        <div class="suggestions">
+            <h3>🔍 Quick Links:</h3>
+            <div class="suggestions-list">
+                <a href="/" class="suggestion-link">Home</a>
+                <a href="/#tripForm" class="suggestion-link">Plan Trip</a>
+                <a href="/about" class="suggestion-link">About Us</a>
+                <a href="/user/login" class="suggestion-link">Login</a>
+                <a href="/user/signup" class="suggestion-link">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add ripple effect on button click
+        document.querySelectorAll('.btn-primary').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                ripple.style.position = 'absolute';
+                ripple.style.width = ripple.style.height = '100px';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255,255,255,0.6)';
+                ripple.style.left = e.clientX - rect.left - 50 + 'px';
+                ripple.style.top = e.clientY - rect.top - 50 + 'px';
+                ripple.style.pointerEvents = 'none';
+                ripple.style.animation = 'ripple 0.6s ease';
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                from {
+                    transform: scale(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Log 404 error (optional)
+        console.log('%c404 Error', 'color: #38b2ac; font-size: 24px; font-weight: bold;');
+        console.log('Page not found: ' + window.location.href);
+    </script>
+</body>
+</html>
