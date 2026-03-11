@@ -1,36 +1,42 @@
-// core modueles
-const fs=require("fs");
-const path=require("path");
-// const rootdir=require("../util/path");
-// fake data 
-let regdata=[];
-module.exports=class registerdata{
+// core modules
+const fs = require("fs").promises;
+const path = require("path");
 
-  constructor(name,email,password){
-    this.name=name;
-    this.email=email;
-    this.password=password;
+module.exports = class RegisterData {
+  constructor(name, email, password) {
+    this.name = name;
+    this.email = email;
+    this.password = password;
   }
- save(){
-  regdata.push(this);
-  const homedatapath=path.join(__dirname,"../data/regdata.json");
-  // stringify ka matlab hai ki data ko string me convert karna hai taki usko file me write kar sake
-  fs.writeFile(homedatapath,JSON.stringify(regdata),(err)=>{
-    if(err){
-      console.log("error in writing file ",err);
-    } else{
-      console.log("file written successfully");
-    }   
-  });
- }
-  // static fetchall(){
-  //   const homedatapath=path.join(__dirname,"../data/regdata.json");
-  //   // read file ka matlab hai ki file se data ko read karna hai taki usko use kar sake
-  //   fs.readFile(homedatapath,(err,data)=>{
-  //     if(!err){
-  //       regdata=JSON.parse(data);
-  //     }
-  //     return regdata;
-  //   });
-  // }
-}
+
+  // Save new user
+  async save() {
+    const filePath = path.join(__dirname, "../data/regdata.json");
+
+    try {
+      // read existing users utf-8 encoding is important to get string data instead of buffer
+      const fileContent = await fs.readFile(filePath, "utf-8");
+      const users = JSON.parse(fileContent);
+
+      users.push(this);
+
+      // write updated data
+      await fs.writeFile(filePath, JSON.stringify(users, null, 2));
+    } catch (err) {
+      // if file does not exist
+      await fs.writeFile(filePath, JSON.stringify([this], null, 2));
+    }
+  }
+
+  // Fetch all users
+  static async fetchAll() {
+    const filePath = path.join(__dirname, "../data/regdata.json");
+
+    try {
+      const fileContent = await fs.readFile(filePath, "utf-8");
+      return JSON.parse(fileContent);
+    } catch (err) {
+      return [];
+    }
+  }
+};

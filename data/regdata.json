@@ -1,1 +1,22 @@
-[{"name":"rajneesh bind","email":"rajkumar55598765@gmail.com","password":"dfgsrgv"},{"name":"kishan kumar ","email":"kishan555@gmail.com","password":"kishan@123"}]
+[
+  {
+    "name": "kishan kumar ",
+    "email": "kishan555@gmail.com",
+    "password": "dfgadf"
+  },
+  {
+    "name": "rahul panday",
+    "email": "kishan555@gmail.com",
+    "password": "asfadsfv"
+  },
+  {
+    "name": "rahul panday",
+    "email": "kishan555@gmail.com",
+    "password": "dsfazds"
+  },
+  {
+    "name": "sami",
+    "email": "sami@gmail.com",
+    "password": "asdgfad"
+  }
+]

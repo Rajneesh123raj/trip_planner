@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AI Trip Planner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .dashboard-container {
+            background: white;
+            padding: 60px 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .user-name {
+            background: linear-gradient(135deg, #38b2ac 0%, #2c7a7b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        p {
+            color: #718096;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #38b2ac 0%, #2c7a7b 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(56, 178, 172, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(56, 178, 172, 0.5);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #38b2ac;
+            border: 2px solid #38b2ac;
+        }
+
+        .btn-secondary:hover {
+            background: #e6fffa;
+            transform: translateY(-3px);
+        }
+
+        .logout-btn {
+            margin-top: 30px;
+            background: #e53e3e;
+            color: white;
+        }
+
+        .logout-btn:hover {
+            background: #c53030;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Welcome, <span class="user-name"><%= name %></span>! 👋</h1>
+        <p>Email: <%= email %></p>
+        <p>Your personal travel planning dashboard</p>
+
+        <div class="actions">
+            <a href="/#tripForm" class="btn btn-primary">✈️ Plan New Trip</a>
+            <a href="/my-trips" class="btn btn-secondary">🗺️ My Trips</a>
+            <a href="/profile" class="btn btn-secondary">👤 Profile Settings</a>
+        </div>
+
+        <a href="/user/logout" class="btn logout-btn">Logout</a>
+    </div>
+</body>
+</html>

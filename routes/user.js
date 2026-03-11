@@ -4,4 +4,5 @@ const usercontroller = require('../controller/users');
 userrouter.use(express.urlencoded({extended:true}));
 userrouter.get("/login",usercontroller.getuser);
 userrouter.post("/login",usercontroller.postuser);
+userrouter.get("/logout", usercontroller.logoutuser);
 exports.userrouter=userrouter;
